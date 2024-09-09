@@ -1,0 +1,21 @@
+.burger-catalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.burger-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.burger-item h2 {
+    margin-bottom: 10px;
+}
+
+.burger-item p {
+    color: #555;
+}

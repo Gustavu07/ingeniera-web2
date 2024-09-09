@@ -1,0 +1,4 @@
+<h1>Reviews para <%= hamburguesa.nombre %></h1>
+<% reviews.forEach(review => { %>
+    <p><%= review.comentario %> - Puntuación: <%= review.puntuacion %>/5</p>
+<% }) %>

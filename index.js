@@ -1,0 +1,39 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+const fileUpload = require('express-fileupload');
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+}));
+
+
+const db = require("./models");
+const session = require('express-session');
+db.sequelize.sync({
+    //force: true // drop tables and recreate
+}).then(() => {
+    console.log("base de datos sincronizada");
+});
+
+    
+//sesiones
+app.use(session({
+    secret: 'esta es la clave de encriptación de la sesión y puede ser cualquier texto'
+}))
+
+//middleware
+app.use(function (req, res, next) {
+    res.locals.usuario = req.session.usuario;
+    next();
+});
+
+require('./routes')(app);
+
+app.listen(3000, function () {
+    console.log('Ingrese a http://localhost:3000')
+})
+

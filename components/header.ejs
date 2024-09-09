@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BurgerMax</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .error-label {
+        color: red;
+    }
+
+    .profile-img {
+    max-width: 100px;
+    max-height: 100px;
+    }
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+
+        .dropdown-menu {
+            border-radius: 0.5rem;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .form-control {
+            border-radius: 2rem;
+        }
+
+        .btn-search {
+            border-radius: 2rem;
+        }
+        
+        .nav-link {
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #00ff99; 
+        }
+        
+        /* Botón destacado */
+        .btn-highlight {
+            background-color: #ff6600;
+            color: white;
+            border-radius: 1.5rem;
+        }
+
+        .btn-highlight:hover {
+            background-color: #ff4500;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-uppercase" href="/burgers">BurgerMax</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                    </li>
+                    <% if (usuario) { %>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Restaurants
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/restaurantes/admin">Lista de Restaurantes</a></li>
+                                <li><a class="dropdown-item" href="/restaurantes/crear">Crear Restaurante</a></li>
+                            </ul>
+                        </li>
+
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Burgers
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/burgers/catalogo">Lista de Burgers</a></li>
+                                <li><a class="dropdown-item" href="/burgers/create">Crear Burger</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <%=usuario.email%>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Iniciar sesión</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/register">Registro</a>
+                            </li>
+                            <% } %>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+</body>
+</html>
